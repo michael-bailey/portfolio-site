@@ -38,6 +38,9 @@ dependencies {
 
 	implementation(kotlin("reflect"))
 
+	implementation("io.ktor:ktor-server-core-jvm:3.2.3")
+	implementation("io.ktor:ktor-server-servlet-jakarta:3.2.3")
+
 	implementation("org.springframework.boot:spring-boot-starter-graphql")
 	implementation("org.springframework.boot:spring-boot-starter-jdbc")
 	implementation("org.springframework.boot:spring-boot-starter-security")
