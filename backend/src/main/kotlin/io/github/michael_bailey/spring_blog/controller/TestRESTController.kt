@@ -1,9 +1,12 @@
+@file:Project("experimental")
+
 package io.github.michael_bailey.spring_blog.controller
 
-import org.springframework.web.bind.annotation.RestController
+import net.michael_bailey.metadata.Project
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseBody
+import org.springframework.web.bind.annotation.RestController
 
 
 /**

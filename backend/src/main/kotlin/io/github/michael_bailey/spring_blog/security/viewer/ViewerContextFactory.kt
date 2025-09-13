@@ -1,3 +1,5 @@
+@file:Project("privacy")
+
 package io.github.michael_bailey.spring_blog.security.viewer
 
 import io.github.michael_bailey.spring_blog.http.CustomHttpRequest
@@ -6,6 +8,7 @@ import io.github.michael_bailey.spring_blog.privacy.PrivacyPreferencesCookie
 import io.github.michael_bailey.spring_blog.security.principal.AnonymousPrincipal
 import io.github.michael_bailey.spring_blog.security.principal.IPrincipal
 import jakarta.servlet.http.HttpServletRequest
+import net.michael_bailey.metadata.Project
 import org.springframework.context.ApplicationContext
 import org.springframework.security.core.Authentication
 import org.springframework.stereotype.Component

@@ -1,8 +1,11 @@
+@file:Project("blog")
+
 package io.github.michael_bailey.spring_blog.service
 
 import io.github.michael_bailey.spring_blog.graphql.types.BlogPost
 import io.github.michael_bailey.spring_blog.model.BlogPostModel
 import io.github.michael_bailey.spring_blog.repository.BlogRepository
+import net.michael_bailey.metadata.Project
 import org.springframework.stereotype.Service
 import kotlin.jvm.optionals.getOrNull
 

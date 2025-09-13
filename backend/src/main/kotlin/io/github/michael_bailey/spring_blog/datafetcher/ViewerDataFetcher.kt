@@ -1,3 +1,5 @@
+@file:Project("privacy")
+
 package io.github.michael_bailey.spring_blog.datafetcher
 
 import com.netflix.graphql.dgs.DgsComponent
@@ -7,6 +9,7 @@ import com.netflix.graphql.dgs.DgsQuery
 import io.github.michael_bailey.spring_blog.privacy.PrivacyPreferencesCookie
 import io.github.michael_bailey.spring_blog.security.viewer.ViewerContext
 import io.github.michael_bailey.spring_blog.security.viewer.ViewerContextHolder
+import net.michael_bailey.metadata.Project
 
 private const val CURRENT_VIEWER_GQL_ID = "current_viewer"
 

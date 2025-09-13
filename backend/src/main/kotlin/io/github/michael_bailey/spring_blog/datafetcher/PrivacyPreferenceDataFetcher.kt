@@ -1,4 +1,4 @@
-//@file:Project("privacy")
+@file:Project("privacy")
 
 package io.github.michael_bailey.spring_blog.datafetcher
 
@@ -10,6 +10,7 @@ import io.github.michael_bailey.spring_blog.security.viewer.ViewerContextHolder
 import jakarta.servlet.http.Cookie
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
+import net.michael_bailey.metadata.Project
 
 private const val CURRENT_VIEWER_PRIVACY_COOKIE_GQL_ID =
 	"current_cookie_preferences"

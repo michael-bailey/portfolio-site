@@ -1,7 +1,10 @@
+@file:Project("administration")
+
 package io.github.michael_bailey.spring_blog.controller
 
 import io.github.michael_bailey.spring_blog.service.BlogService
 import jakarta.servlet.http.HttpServletResponse
+import net.michael_bailey.metadata.Project
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Controller

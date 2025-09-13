@@ -1,8 +1,11 @@
+@file:Project("blog")
+
 package io.github.michael_bailey.spring_blog.controller
 
 import io.github.michael_bailey.spring_blog.service.BlogService
 import io.github.michael_bailey.spring_blog.service.MarkdownService
 import jakarta.servlet.http.HttpServletResponse
+import net.michael_bailey.metadata.Project
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping

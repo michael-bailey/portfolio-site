@@ -1,5 +1,8 @@
+@file:Project("markdown")
+
 package io.github.michael_bailey.spring_blog.service
 
+import net.michael_bailey.metadata.Project
 import org.commonmark.parser.Parser
 import org.commonmark.renderer.html.HtmlRenderer
 import org.springframework.stereotype.Service

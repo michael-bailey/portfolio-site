@@ -1,8 +1,11 @@
+@file:Project("blog")
+
 package io.github.michael_bailey.spring_blog.model
 
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.Id
+import net.michael_bailey.metadata.Project
 import org.apache.catalina.util.URLEncoder
 import java.net.URI
 import java.nio.charset.Charset

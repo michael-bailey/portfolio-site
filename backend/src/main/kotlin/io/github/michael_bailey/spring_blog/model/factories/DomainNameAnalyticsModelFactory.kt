@@ -1,6 +1,9 @@
+@file:Project("analytics")
+
 package io.github.michael_bailey.spring_blog.model.factories
 
 import io.github.michael_bailey.spring_blog.model.DomainNameAnalyticsModel
+import net.michael_bailey.metadata.Project
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
 import java.net.InetAddress

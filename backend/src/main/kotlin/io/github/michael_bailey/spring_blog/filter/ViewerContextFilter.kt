@@ -1,3 +1,5 @@
+@file:Project("privacy")
+
 package io.github.michael_bailey.spring_blog.filter
 
 import io.github.michael_bailey.spring_blog.cookie.PreferenceCookieFactory
@@ -9,6 +11,7 @@ import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
 import kotlinx.serialization.json.Json
+import net.michael_bailey.metadata.Project
 import org.slf4j.LoggerFactory
 import org.springframework.context.ApplicationContext
 import org.springframework.core.annotation.Order

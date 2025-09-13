@@ -1,3 +1,5 @@
+@file:Project("blog")
+
 package io.github.michael_bailey.spring_blog.datafetcher
 
 import com.netflix.graphql.dgs.DgsComponent
@@ -6,6 +8,7 @@ import com.netflix.graphql.dgs.DgsQuery
 import com.netflix.graphql.dgs.InputArgument
 import io.github.michael_bailey.spring_blog.graphql.types.BlogPost
 import io.github.michael_bailey.spring_blog.service.BlogService
+import net.michael_bailey.metadata.Project
 
 @DgsComponent
 class BlogDataFetcher(

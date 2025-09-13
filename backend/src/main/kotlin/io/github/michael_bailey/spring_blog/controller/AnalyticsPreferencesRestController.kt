@@ -1,3 +1,5 @@
+@file:Project("analytics")
+
 package io.github.michael_bailey.spring_blog.controller
 
 import io.github.michael_bailey.spring_blog.cookie.PreferenceCookieFactory
@@ -7,6 +9,7 @@ import io.github.michael_bailey.spring_blog.security.viewer.IViewerContext
 import io.github.michael_bailey.spring_blog.service.AnalyticsService
 import jakarta.servlet.http.Cookie
 import jakarta.servlet.http.HttpServletResponse
+import net.michael_bailey.metadata.Project
 import org.springframework.web.bind.annotation.*
 
 @RestController

@@ -1,7 +1,10 @@
+@file:Project("github")
+
 package io.github.michael_bailey.spring_blog.repository
 
 import com.github.client.UserAvatarUrlQuery
 import io.github.michael_bailey.spring_blog.config.GraphQLConfig
+import net.michael_bailey.metadata.Project
 import org.springframework.stereotype.Repository
 import org.springframework.web.context.annotation.RequestScope
 

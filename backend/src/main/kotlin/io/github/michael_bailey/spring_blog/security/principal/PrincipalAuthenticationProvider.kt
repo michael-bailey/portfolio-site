@@ -1,6 +1,9 @@
+@file:Project("authentication")
+
 package io.github.michael_bailey.spring_blog.security.principal
 
 import io.github.michael_bailey.spring_blog.repository.UserRepository
+import net.michael_bailey.metadata.Project
 import org.slf4j.LoggerFactory
 import org.springframework.security.authentication.AuthenticationProvider
 import org.springframework.security.authentication.BadCredentialsException
