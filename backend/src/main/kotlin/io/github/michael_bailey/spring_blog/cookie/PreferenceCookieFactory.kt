@@ -1,8 +1,10 @@
-package io.github.michael_bailey.spring_blog.cookie
+@file:Project("privacy")
 
+package io.github.michael_bailey.spring_blog.cookie
 
 import io.github.michael_bailey.spring_blog.privacy.PrivacyPreferencesCookie
 import jakarta.servlet.http.Cookie
+import net.michael_bailey.metadata.Project
 import org.springframework.stereotype.Component
 
 @Component

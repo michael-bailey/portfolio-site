@@ -1,10 +1,12 @@
+@file:Project("privacy")
+
 package io.github.michael_bailey.spring_blog.privacy
 
+import net.michael_bailey.metadata.Project
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import java.util.*
 import java.io.Serializable as JavaSerializable
-
 
 @Serializable
 data class PrivacyPreferencesCookie(

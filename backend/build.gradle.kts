@@ -4,6 +4,8 @@ plugins {
 	kotlin("plugin.serialization") version "2.2.0"
 	kotlin("plugin.spring") version "2.2.0"
 
+	id("com.google.devtools.ksp") version "2.2.0-2.0.2"
+
 	id("org.springframework.boot") version "3.4.5"
 	id("io.spring.dependency-management") version "1.1.7"
 	id("com.netflix.dgs.codegen") version "7.0.3"
@@ -33,6 +35,9 @@ repositories {
 }
 
 dependencies {
+
+	implementation(kotlin("reflect"))
+
 	implementation("org.springframework.boot:spring-boot-starter-graphql")
 	implementation("org.springframework.boot:spring-boot-starter-jdbc")
 	implementation("org.springframework.boot:spring-boot-starter-security")
@@ -61,6 +66,10 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 
 	runtimeOnly("org.postgresql:postgresql")
+
+	ksp(project(":processors"))
+
+	implementation(project(":metadata"))
 
 	implementation("org.thymeleaf.extras:thymeleaf-extras-springsecurity6")
 	implementation("nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:3.1.0")

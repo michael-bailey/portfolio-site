@@ -1,3 +1,5 @@
+//@file:Project("privacy")
+
 package io.github.michael_bailey.spring_blog.datafetcher
 
 import com.netflix.graphql.dgs.*
