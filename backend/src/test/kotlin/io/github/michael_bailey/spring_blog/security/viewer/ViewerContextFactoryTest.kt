@@ -2,6 +2,7 @@ package io.github.michael_bailey.spring_blog.security.viewer
 
 import io.github.michael_bailey.spring_blog.extension.nullUUID
 import io.github.michael_bailey.spring_blog.http.CustomHttpRequest
+import io.github.michael_bailey.spring_blog.privacy.PrivacyPreferencesCookie
 import io.github.michael_bailey.spring_blog.security.principal.UserPrincipal
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
@@ -61,7 +62,8 @@ class ViewerContextFactoryTest {
 			authentication = usernameAuthentication,
 			request = request,
 			clock = clock,
-			applicationContext = applicationContext
+			applicationContext = applicationContext,
+			privacyPreferences = PrivacyPreferencesCookie()
 		)
 
 		assertEquals(Locale.ENGLISH, vc.locale)
@@ -83,7 +85,8 @@ class ViewerContextFactoryTest {
 			authentication = anonAuthentication,
 			request = request,
 			clock = clock,
-			applicationContext = applicationContext
+			applicationContext = applicationContext,
+			privacyPreferences = PrivacyPreferencesCookie()
 		)
 
 		assertEquals(Locale.ENGLISH, vc.locale)
