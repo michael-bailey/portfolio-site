@@ -23,3 +23,7 @@ include("frontend")
 include(":modules:shared")
 include(":modules:server")
 include(":modules:client")
+
+includeBuild("plugins")
+include("processors")
+include("metadata")
