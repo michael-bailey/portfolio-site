@@ -1,4 +1,4 @@
-package net.michael_bailey.net.michael_bailey.processors.processor
+package net.michael_bailey.processors.processor
 
 import com.google.devtools.ksp.KspExperimental
 import com.google.devtools.ksp.getAnnotationsByType

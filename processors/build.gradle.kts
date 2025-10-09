@@ -11,14 +11,21 @@ repositories {
 
 dependencies {
 	implementation(kotlin("stdlib"))
-	api(kotlin("reflect"))
+//	api(kotlin("reflect"))
 
 	implementation(project(":metadata"))
 
 	implementation("com.google.devtools.ksp:symbol-processing-api:1.9.10-1.0.13")
 
+	implementation("io.ktor:ktor-server-core-jvm:3.2.3")
+
 	implementation("com.squareup:kotlinpoet:1.15.0")
 	implementation("com.squareup:kotlinpoet-ksp:1.15.0")
+
+	testImplementation(kotlin("test"))
+	testImplementation("org.mockito.kotlin:mockito-kotlin:6.0.0")
+	testImplementation("com.github.tschuchortdev:kotlin-compile-testing:1.6.0")
+	testImplementation("com.github.tschuchortdev:kotlin-compile-testing-ksp:1.6.0")
 }
 
 kotlin {
