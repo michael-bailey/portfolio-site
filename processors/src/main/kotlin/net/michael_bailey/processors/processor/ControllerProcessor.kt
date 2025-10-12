@@ -14,8 +14,9 @@ import com.squareup.kotlinpoet.ksp.writeTo
 import net.michael_bailey.processors.generator.ControllerConfigGenerator
 import net.michael_bailey.processors.generator.RouteFileGenerator
 import net.michael_bailey.processors.scanners.ControllerScanner
-import net.michael_bailey.processors.strategies.DefaultNamingStrategy
-import net.michael_bailey.processors.strategies.INamingStrategy
+import net.michael_bailey.processors.strategies.handler.BasicHandlerGenerationStrategy
+import net.michael_bailey.processors.strategies.naming.DefaultNamingStrategy
+import net.michael_bailey.processors.strategies.naming.INamingStrategy
 
 /**
  * A symbol processor for handling controllers annotated with the `@Controller` annotation.
@@ -33,6 +34,8 @@ class ControllerProcessor(
 	private val logger: KSPLogger,
 ) : SymbolProcessor {
 
+	private var iterations: Int = 1
+
 	private var isFinished: Boolean = false
 
 	private val namingStrategy: INamingStrategy = DefaultNamingStrategy()
@@ -48,25 +51,35 @@ class ControllerProcessor(
 	 */
 	@OptIn(KspExperimental::class)
 	override fun process(resolver: Resolver): List<KSAnnotated> {
+
+		logger.info("iteration $iterations")
+		iterations += 1
+
 		if (isFinished) return emptyList()
 
 		// todo: insert cache into scanner
 		val controllerScanner = ControllerScanner(resolver, logger)
-		val configGen = ControllerConfigGenerator(logger)
-		val fileGen = RouteFileGenerator(namingStrategy, logger)
 
 		val controllers = controllerScanner.getControllers()
 		val (valid, deferred) = controllers.partition { it.validate() }
 
-		if (deferred.isNotEmpty()) return deferred
+		if (deferred.isNotEmpty()) {
+			return deferred
+		}
 
+		val configGen = ControllerConfigGenerator(logger)
 		val controllerConfigs = valid.map(configGen::generate)
+
+		// todo: move this into context object, to support differing controller types
+		val handlerGeneratorStrategy =
+			BasicHandlerGenerationStrategy(namingStrategy)
+		val fileGen = RouteFileGenerator(namingStrategy, handlerGeneratorStrategy, logger)
+
 		val routeFiles = controllerConfigs.map(fileGen::generate)
 
 		routeFiles.forEach { file ->
 			file.writeTo(codeGenerator, aggregating = true)
 		}
-
 
 		FileSpec.builder("io.github.michael_bailey.spring_blog", "mappedRoutes")
 			.apply {
