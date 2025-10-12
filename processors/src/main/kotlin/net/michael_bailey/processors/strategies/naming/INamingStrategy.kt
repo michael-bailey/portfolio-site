@@ -1,4 +1,4 @@
-package net.michael_bailey.processors.strategies
+package net.michael_bailey.processors.strategies.naming
 
 import net.michael_bailey.processors.configuration.ControllerConfiguration
 import net.michael_bailey.processors.configuration.RouteConfiguration
@@ -9,12 +9,12 @@ interface INamingStrategy {
 		controllerConfiguration: ControllerConfiguration,
 	): String
 
-	fun getControllerRouteName(
+	fun getRouteFunctionName(
 		controllerConfiguration: ControllerConfiguration,
 		routeConfiguration: RouteConfiguration,
 	): String
 
-	fun getMappingName(
+	fun getFilename(
 		controllerConfiguration: ControllerConfiguration,
 	): String
 }
