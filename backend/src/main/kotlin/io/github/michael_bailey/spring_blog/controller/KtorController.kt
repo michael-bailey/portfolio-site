@@ -12,12 +12,12 @@ import net.michael_bailey.metadata.Project
 class KtorController: RestController() {
 
 	@GetRoute
-	fun getKtor(): String {
+	fun index(): String {
 		return "Get Hello World"
 	}
 
 	@PostRoute
-	fun postKtor(): String {
+	fun postIndex(): String {
 		return "Post Hello World"
 	}
 
