@@ -15,6 +15,7 @@ import net.michael_bailey.processors.configuration.ControllerConfiguration
 import net.michael_bailey.processors.configuration.RouteConfiguration
 
 class ControllerConfigGenerator(private val logger: KSPLogger) {
+
 	fun generate(
 		controllerDecl: KSClassDeclaration,
 	): ControllerConfiguration {
@@ -48,7 +49,9 @@ class ControllerConfigGenerator(private val logger: KSPLogger) {
 		val httpMethod = getHttpMethodFromAnnotation(annotations.first())
 
 		return RouteConfiguration(
-			path = path, methodName = methodName, httpMethod = httpMethod,
+			path = path,
+			methodName = methodName,
+			httpMethod = httpMethod,
 			controllerName = function.parentDeclaration?.qualifiedName?.asString()!!
 		)
 	}
@@ -65,19 +68,36 @@ class ControllerConfigGenerator(private val logger: KSPLogger) {
 		}
 
 	private fun routeMethodsFilter(function: KSFunctionDeclaration): Boolean {
-		val isRoute = !function.isConstructor() && function.getVisibility() == Visibility.PUBLIC && function.annotations.any(
-			::isRouteAnnotation
-		)
 
-		logger.info("checking function: ${function.simpleName.asString()} is route: $isRoute")
+		var isValid = true
 
-		return isRoute
+		if (!function.annotations.any(::isRouteAnnotation)) return false
+
+		if (function.isAbstract) {
+			logger.error("${function.simpleName.asString()} is abstract, abstract functions cannot be handlers")
+			isValid = false
+		}
+
+		if (function.isConstructor()) {
+			logger.error("${function.simpleName.asString()} is a constructor, constructors cannot be handlers")
+			isValid = false
+		}
+
+		if (function.getVisibility() != Visibility.PUBLIC) {
+			logger.error("${function.simpleName.asString()} is not public, only public functions can be handlers")
+			isValid = false
+		}
+
+		if (function.returnType?.resolve()?.declaration?.qualifiedName?.asString() != "io.github.michael_bailey.spring_blog.action.IActionResult") {
+			logger.error("${function.simpleName.asString()} does not return IActionResult, only functions that return IActionResult can be handlers")
+			isValid = false
+		}
+
+		return isValid
 	}
 
 	private fun isRouteAnnotation(annotation: KSAnnotation): Boolean =
 		annotation.shortName.asString().let {
 			it == GetRoute::class.simpleName || it == PostRoute::class.simpleName
 		}
-
-
 }

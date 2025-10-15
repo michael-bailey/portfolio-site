@@ -39,6 +39,9 @@ dependencies {
 	implementation(kotlin("reflect"))
 
 	implementation("io.ktor:ktor-server-core-jvm:3.2.3")
+	implementation("io.ktor:ktor-server-content-negotiation:3.2.3")
+	implementation("io.ktor:ktor-serialization-kotlinx-json:3.2.3")
+	implementation("io.ktor:ktor-serialization-kotlinx-xml:3.2.3")
 	implementation("io.ktor:ktor-server-servlet-jakarta:3.2.3")
 	implementation("io.ktor:ktor-server-netty-jvm:3.2.3")
 

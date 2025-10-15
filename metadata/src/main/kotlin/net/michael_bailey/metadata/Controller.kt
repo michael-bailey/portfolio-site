@@ -1,7 +1,5 @@
 package net.michael_bailey.metadata
 
-
-
 /**
  * Annotation for registering a controller.
  *
@@ -12,5 +10,5 @@ package net.michael_bailey.metadata
 @Target(AnnotationTarget.CLASS)
 @Retention(AnnotationRetention.SOURCE)
 annotation class Controller(
-	val basePath: String
+	val basePath: String,
 )

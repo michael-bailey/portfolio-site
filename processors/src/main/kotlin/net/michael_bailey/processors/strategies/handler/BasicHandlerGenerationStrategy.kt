@@ -28,7 +28,7 @@ class BasicHandlerGenerationStrategy(
 					${routeConfiguration.httpMethod.lowercase(getDefault())}("${routeConfiguration.path}") {
 						val controller = ${routeConfiguration.controllerName}()
 						val res = controller.${routeConfiguration.methodName}()
-						call.respondText(res)
+						res.executeResult(call)
 					}
 				""".trimIndent()
 			)
