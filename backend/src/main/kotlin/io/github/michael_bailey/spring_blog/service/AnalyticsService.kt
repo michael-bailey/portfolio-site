@@ -8,8 +8,8 @@ import io.github.michael_bailey.spring_blog.model.factories.DomainNameAnalyticsM
 import io.github.michael_bailey.spring_blog.model.factories.RequestAnalyticsModelFactory
 import io.github.michael_bailey.spring_blog.privacy.policy.DomainNameAnalyticsPolicy
 import io.github.michael_bailey.spring_blog.privacy.policy.RequestAnalyticsPolicy
-import io.github.michael_bailey.spring_blog.repository.DomainNameAnalyticsRepository
-import io.github.michael_bailey.spring_blog.repository.RequestAnalyticsRepository
+import io.github.michael_bailey.spring_blog.repository.old.DomainNameAnalyticsRepository
+import io.github.michael_bailey.spring_blog.repository.old.RequestAnalyticsRepository
 import io.github.michael_bailey.spring_blog.security.viewer.IViewerContext
 import net.michael_bailey.metadata.Project
 import org.slf4j.Logger

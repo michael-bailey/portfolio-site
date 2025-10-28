@@ -4,7 +4,7 @@ package io.github.michael_bailey.spring_blog.service
 
 import io.github.michael_bailey.spring_blog.config.WebSecurityConfig
 import io.github.michael_bailey.spring_blog.model.UserModel
-import io.github.michael_bailey.spring_blog.repository.UserRepository
+import io.github.michael_bailey.spring_blog.repository.old.UserRepository
 import net.michael_bailey.metadata.Project
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService

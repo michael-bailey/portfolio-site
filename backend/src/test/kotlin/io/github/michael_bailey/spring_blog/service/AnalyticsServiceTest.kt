@@ -5,8 +5,8 @@ import io.github.michael_bailey.spring_blog.model.DomainNameAnalyticsModel
 import io.github.michael_bailey.spring_blog.model.RequestAnalyticsModel
 import io.github.michael_bailey.spring_blog.model.factories.DomainNameAnalyticsModelFactory
 import io.github.michael_bailey.spring_blog.model.factories.RequestAnalyticsModelFactory
-import io.github.michael_bailey.spring_blog.repository.DomainNameAnalyticsRepository
-import io.github.michael_bailey.spring_blog.repository.RequestAnalyticsRepository
+import io.github.michael_bailey.spring_blog.repository.old.DomainNameAnalyticsRepository
+import io.github.michael_bailey.spring_blog.repository.old.RequestAnalyticsRepository
 import io.github.michael_bailey.spring_blog.security.viewer.IViewerContext
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith

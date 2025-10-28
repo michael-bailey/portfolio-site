@@ -1,5 +1,6 @@
 package io.github.michael_bailey.spring_blog.controller
 
+import io.github.michael_bailey.spring_blog.controller.old.RootController
 import io.github.michael_bailey.spring_blog.filter.AnalyticsFilter
 import io.github.michael_bailey.spring_blog.filter.ViewerContextFilter
 import io.github.michael_bailey.spring_blog.model.BlogPostModel

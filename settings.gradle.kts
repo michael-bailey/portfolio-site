@@ -25,5 +25,7 @@ include(":modules:server")
 include(":modules:client")
 
 includeBuild("plugins")
-include("processors")
+//include("processors")
 include("metadata")
+include("controller_gen")
+include("BITLIB")

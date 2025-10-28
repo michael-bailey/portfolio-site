@@ -2,16 +2,17 @@
 
 package io.github.michael_bailey.spring_blog.controller
 
-import io.github.michael_bailey.spring_blog.action.IActionResult
-import io.github.michael_bailey.spring_blog.controller.base.RestController
 import kotlinx.serialization.Serializable
-import net.michael_bailey.metadata.Controller
-import net.michael_bailey.metadata.GetRoute
-import net.michael_bailey.metadata.PostRoute
+import net.michael_bailey.controller.action.IActionResult
+import net.michael_bailey.controller.annotations.Controller
+import net.michael_bailey.controller.annotations.GetRoute
+import net.michael_bailey.controller.annotations.PostRoute
+import net.michael_bailey.controller.base.RestController
 import net.michael_bailey.metadata.Project
 
+
 @Controller(basePath = "/api/ktor/test")
-class KtorController : RestController() {
+class KtorController() : RestController() {
 
 	@Serializable
 	data class TestResponse(
@@ -48,6 +49,14 @@ class KtorController : RestController() {
 	fun redirectTest() = redirect("https://michael-bailey.net", true)
 
 	@GetRoute("/notFound")
-	fun notFoundTest() = notFoundError()
+	fun notFoundTest() = notFound()
+
+	override fun preExec() {
+		TODO("Not yet implemented")
+	}
+
+	override fun postExec() {
+		TODO("Not yet implemented")
+	}
 
 }

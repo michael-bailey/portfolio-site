@@ -1,0 +1,129 @@
+package net.michael_bailey.processor.processor
+
+import com.google.devtools.ksp.KspExperimental
+import com.google.devtools.ksp.processing.CodeGenerator
+import com.google.devtools.ksp.processing.KSPLogger
+import com.google.devtools.ksp.processing.Resolver
+import com.google.devtools.ksp.processing.SymbolProcessor
+import com.google.devtools.ksp.symbol.KSAnnotated
+import com.google.devtools.ksp.validate
+import com.squareup.kotlinpoet.ClassName
+import com.squareup.kotlinpoet.FileSpec
+import com.squareup.kotlinpoet.FunSpec
+import com.squareup.kotlinpoet.ksp.writeTo
+import net.michael_bailey.processor.generator.ControllerConfigGenerator
+import net.michael_bailey.processor.generator.RouteFileGenerator
+import net.michael_bailey.processor.scanners.ControllerScanner
+import net.michael_bailey.processor.strategies.handler.AuthenticationHandlerGenerationStrategy
+import net.michael_bailey.processor.strategies.naming.DefaultNamingStrategy
+import net.michael_bailey.processor.strategies.naming.INamingStrategy
+
+/**
+ * A symbol processor for handling controllers annotated with the `@Controller` annotation.
+ *
+ * This class generates configuration mappings and functions for controllers and their associated routes,
+ * enabling the integration of controllers into a Ktor application routing tree.
+ *
+ * @constructor Creates a [ControllerProcessor] instance with the specified code generator and logger.
+ *
+ * @property codeGenerator The code generator used to create generated source files.
+ * @property logger The logger used to log messages and errors during the processing.
+ */
+class ControllerProcessor(
+	private val codeGenerator: CodeGenerator,
+	private val logger: KSPLogger,
+) : SymbolProcessor {
+
+	private var iterations: Int = 1
+
+	private var isFinished: Boolean = false
+
+	private val namingStrategy: INamingStrategy = DefaultNamingStrategy()
+
+	/**
+	 * Processes the symbols resolved by the Kotlin Symbol Processing (KSP) `Resolver`
+	 * and generates controller configurations and routes for Ktor-based applications.
+	 * This method retrieves classes annotated with the `@Controller` annotation,
+	 * validates them, and generates the corresponding function specifications and setup files.
+	 *
+	 * @param resolver The KSP `Resolver` used to locate and analyze symbols in the codebase.
+	 * @return A list of `KSAnnotated` objects that were unable to be fully processed.
+	 */
+	@OptIn(KspExperimental::class)
+	override fun process(resolver: Resolver): List<KSAnnotated> {
+
+		logger.info("iteration $iterations")
+		iterations += 1
+
+		if (isFinished) return emptyList()
+		
+		// todo: insert cache into scanner
+		val controllerScanner = ControllerScanner(resolver, logger)
+		
+		val controllers = controllerScanner.getControllers()
+		val (valid, deferred) = controllers.partition { it.validate() }
+		
+		if (deferred.isNotEmpty()) {
+			return deferred
+		}
+		
+		// If there are no valid controllers and nothing is deferred, let KSP run another round.
+		if (valid.isEmpty()) {
+			logger.info("No valid controllers found this round; deferring generation to next round")
+			return emptyList()
+		}
+		
+		val configGen = ControllerConfigGenerator(logger)
+		val controllerConfigs = valid.map(configGen::generate)
+
+		// todo: move this into context object, to support differing controller types
+		val handlerGeneratorStrategy =
+			AuthenticationHandlerGenerationStrategy(namingStrategy)
+		val fileGen =
+			RouteFileGenerator(namingStrategy, handlerGeneratorStrategy, logger)
+
+		val routeFiles = controllerConfigs.map(fileGen::generate)
+		
+		routeFiles.forEach { file ->
+			file.writeTo(codeGenerator, aggregating = true)
+		}
+		
+		FileSpec.builder("io.github.michael_bailey.spring_blog", "mappedRoutes")
+			.apply {
+				
+				addImport(
+					"io.ktor.server.routing",
+					"get",
+					"post",
+					"put",
+					"patch",
+					"delete",
+					"route",
+					"routing"
+				)
+				addImport("io.ktor.server.response", "respondText")
+				
+				addImport("io.ktor.server.application", "Application")
+				
+				
+				addFunction(FunSpec.builder("setupControllers").apply {
+					receiver(ClassName("io.ktor.server.application", "Application"))
+					
+					beginControlFlow("routing")
+					controllerConfigs.forEach { controllerConfig ->
+						addCode(namingStrategy.getControllerSetupName(controllerConfig) + "()\n")
+					}
+					endControlFlow()
+					
+					
+				}.build())
+				
+				build().writeTo(codeGenerator, aggregating = true)
+			}
+		
+		isFinished = true
+
+		return emptyList()
+	}
+
+}

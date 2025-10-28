@@ -1,8 +1,7 @@
 package io.github.michael_bailey.spring_blog.service
 
-import io.github.michael_bailey.spring_blog.graphql.types.BlogPost
 import io.github.michael_bailey.spring_blog.model.BlogPostModel
-import io.github.michael_bailey.spring_blog.repository.BlogRepository
+import io.github.michael_bailey.spring_blog.repository.old.BlogRepository
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith

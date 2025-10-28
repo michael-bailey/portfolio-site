@@ -2,13 +2,15 @@
 plugins {
 	kotlin("jvm") version "2.2.0"
 	kotlin("plugin.serialization") version "2.2.0"
-	kotlin("plugin.spring") version "2.2.0"
+
+	application
 
 	id("com.google.devtools.ksp") version "2.2.0-2.0.2"
 
 	id("org.springframework.boot") version "3.4.5"
 	id("io.spring.dependency-management") version "1.1.7"
 	id("com.netflix.dgs.codegen") version "7.0.3"
+
 	id("com.apollographql.apollo") version "4.1.0"
 	id("jacoco")
 
@@ -30,6 +32,11 @@ kotlin {
 	}
 }
 
+application {
+	mainClass.set("io.github.michael_bailey.spring_blog.SpringBlogApplicationKt")
+	applicationName = "spring-blog"
+}
+
 repositories {
 	mavenCentral()
 }
@@ -44,6 +51,10 @@ dependencies {
 	implementation("io.ktor:ktor-serialization-kotlinx-xml:3.2.3")
 	implementation("io.ktor:ktor-server-servlet-jakarta:3.2.3")
 	implementation("io.ktor:ktor-server-netty-jvm:3.2.3")
+
+	implementation(platform("io.insert-koin:koin-bom:4.1.0"))
+	implementation("io.insert-koin:koin-core")
+	implementation("io.insert-koin:koin-ktor")
 
 	implementation("org.springframework.boot:spring-boot-starter-graphql")
 	implementation("org.springframework.boot:spring-boot-starter-jdbc")
@@ -74,7 +85,18 @@ dependencies {
 
 	runtimeOnly("org.postgresql:postgresql")
 
-	ksp(project(":processors"))
+	implementation("org.jetbrains.exposed:exposed-core:1.0.0-rc-2")
+	implementation("org.jetbrains.exposed:exposed-jdbc:1.0.0-rc-2")
+	implementation("com.h2database:h2:2.2.224")
+
+	implementation(platform("io.insert-koin:koin-bom:4.1.0"))
+	implementation("io.insert-koin:koin-ktor")
+	implementation("io.insert-koin:koin-logger-slf4j")
+
+	implementation(project(":BITLIB"))
+
+	implementation(project(":controller_gen"))
+	ksp(project(":controller_gen"))
 
 	implementation(project(":metadata"))
 

@@ -1,5 +1,9 @@
 package io.github.michael_bailey.spring_blog
 
+import io.github.michael_bailey.spring_blog.plugin.RequestScopePlugin
+import io.github.michael_bailey.spring_blog.setup.setupAuthentication
+import io.github.michael_bailey.spring_blog.setup.setupDatabase
+import io.github.michael_bailey.spring_blog.setup.setupKoin
 import io.ktor.serialization.kotlinx.xml.*
 import io.ktor.server.application.*
 import io.ktor.server.engine.*
@@ -20,10 +24,17 @@ fun main(args: Array<String>) {
 
 fun Application.module() {
 
+	setupDatabase()
+	setupKoin()
+
 	install(ContentNegotiation) {
-		json()
 		xml()
+		json()
 	}
+
+	install(RequestScopePlugin)
+
+	setupAuthentication()
 
 	setupControllers()
 
