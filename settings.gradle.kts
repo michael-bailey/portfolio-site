@@ -15,17 +15,7 @@ dependencyResolutionManagement {
 	}
 }
 
-dependencyResolutionManagement {
-	versionCatalogs {
-		create("buildLibs") {
-			this.from(files("gradle/buildLibs.versions.toml"))
-		}
-	}
-}
-
 includeBuild("modules/plugins")
 
 include("backend")
 include("frontend")
-
-includeBuild("plugins")
