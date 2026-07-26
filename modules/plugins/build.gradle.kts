@@ -28,4 +28,9 @@ gradlePlugin {
 		id = "javascript"
 		implementationClass = "plugin.JavascriptProject"
 	}
+
+	val versionManagerPlugin by plugins.creating {
+		id = "version.management"
+		implementationClass = "plugin.VersionManagerPlugin"
+	}
 }
