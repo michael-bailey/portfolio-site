@@ -42,3 +42,6 @@ out/
 .next/
 node_modules/
 /frontend/next-env.d.ts
+
+### Other ###
+/.notebooks
