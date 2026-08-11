@@ -43,14 +43,7 @@ ktor {
 	openApi {
 		this.enabled = true
 	}
-
-	docker {
-		jreVersion = JavaVersion.VERSION_22
-		this.localImageName = "michael-bailey-net"
-		this.imageTag = version.toString()
-	}
-
 	fatJar {
-		archiveFileName = "server-full.jar"
+		archiveFileName = "michael-bailey-net.jar"
 	}
 }
