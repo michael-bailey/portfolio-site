@@ -1,0 +1,8 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: portfolio-site
+resources:
+  - ../../base
+images:
+  - name: ghcr.io/michael-bailey/personal_website
+    newTag: pr-36
