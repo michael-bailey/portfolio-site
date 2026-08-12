@@ -1,6 +1,7 @@
 name: Build and Deploy to Raspberry Pi
 
 on:
+  workflow_dispatch:
   push:
     branches: [ master ]
 
