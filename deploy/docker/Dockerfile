@@ -28,7 +28,7 @@ FROM eclipse-temurin:21-jre-jammy AS runtime
 RUN useradd --system --uid 1000 appuser
 WORKDIR /app
 
-COPY --from=builder /app/modules/server/build/libs/*-all.jar app.jar
+COPY --from=builder /app/modules/server/build/libs/michael-bailey-net.jar app.jar
 
 USER appuser
 EXPOSE 8080
