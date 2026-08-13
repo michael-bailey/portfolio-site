@@ -23,6 +23,8 @@ jobs:
           ref: prod
           fetch-depth: 0
 
+      - uses: imranismail/setup-kustomize@v2
+
       - name: Fetch master
         run: git fetch origin master
 
@@ -31,20 +33,20 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Cherry-pick latest master commit
-        run: git cherry-pick ${{ github.event.workflow_run.head_sha }}
-
-      - uses: imranismail/setup-kustomize@v2
+      - name: Checkout prod for yaml changes
+        run: |
+          git checkout origin/prod
+          git reset --hard master
 
       - name: Update image tag
         working-directory: deploy/overlays/prod
         run: |
           kustomize edit set image ${{ env.IMAGE_NAME }}=${{ env.IMAGE_NAME }}:sha-${{ github.event.workflow_run.head_sha }}
 
-      - name: Fold tag change into the cherry-picked commit
+      - name: Commit new tag to prod
         run: |
           git add -A
-          git commit --amend --no-edit
+          git commit --no-edit
 
       - name: Push
-        run: git push origin HEAD:prod
+        run: git push
