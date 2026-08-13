@@ -35,7 +35,7 @@ jobs:
 
       - name: Checkout prod for yaml changes
         run: |
-          git checkout origin/prod
+          git switch prod
           git reset --hard master
 
       - name: Update image tag
