@@ -5,4 +5,4 @@ resources:
   - ../../base
 images:
   - name: ghcr.io/michael-bailey/personal_website
-    newTag: pr-36
+    newTag: pr-44

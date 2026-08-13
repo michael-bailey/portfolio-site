@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
         - name: portfolio-site
-          image:
+          image: ghcr.io/michael-bailey/personal_website:pr-44
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
           readinessProbe:
