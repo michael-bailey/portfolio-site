@@ -19,9 +19,8 @@ jobs:
     if: github.event.workflow_run.conclusion == 'success'
     steps:
       - uses: actions/checkout@v5
-        with:
-          ref: prod
-          fetch-depth: 0
+
+      - uses: imranismail/setup-kustomize@v2
 
       - uses: imranismail/setup-kustomize@v2
 
