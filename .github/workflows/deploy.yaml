@@ -45,7 +45,7 @@ jobs:
       - name: Commit new tag to prod
         run: |
           git add -A
-          git commit --no-edit
+          git commit -m "updated kustomize to version: ${{ github.event.workflow_run.head_sha }}"
 
       - name: Push
         run: git push
