@@ -37,7 +37,8 @@ jobs:
           git reset --hard master
 
       - name: Update image tag
-        working-directory: ./deploy/overlays/prod
+        # Btw if this works, this is dumb
+        working-directory: ../deploy/overlays/prod
         run: |
           kustomize edit set image ${{ env.IMAGE_NAME }}=${{ env.IMAGE_NAME }}:sha-${{ github.event.workflow_run.head_sha }}
 
