@@ -5,6 +5,7 @@ on:
     workflows: [ CI ]
     types: [ completed ]
     branches: [ master ]
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -36,7 +37,7 @@ jobs:
           git reset --hard master
 
       - name: Update image tag
-        working-directory: deploy/overlays/prod
+        working-directory: ./deploy/overlays/prod
         run: |
           kustomize edit set image ${{ env.IMAGE_NAME }}=${{ env.IMAGE_NAME }}:sha-${{ github.event.workflow_run.head_sha }}
 
