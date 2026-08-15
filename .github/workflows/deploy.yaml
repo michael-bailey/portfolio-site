@@ -38,7 +38,7 @@ jobs:
 
       - name: Update image tag
         # Btw if this works, this is dumb
-        working-directory: ../deploy/overlays/prod
+        working-directory: deploy/kustomise/overlays/prod
         run: |
           kustomize edit set image ${{ env.IMAGE_NAME }}=${{ env.IMAGE_NAME }}:sha-${{ github.event.workflow_run.head_sha }}
 
