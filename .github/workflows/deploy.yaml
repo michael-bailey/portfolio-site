@@ -48,4 +48,4 @@ jobs:
           git commit -m "updated kustomize to version: ${{ github.event.workflow_run.head_sha }}"
 
       - name: Push
-        run: git push
+        run: git push -f
