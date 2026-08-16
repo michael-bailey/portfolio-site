@@ -4,6 +4,7 @@ namespace: portfolio-site
 resources:
   - ../../base
   - certificate.yaml
+  - ingressRoute.yaml
 images:
   - name: michael-bailey-net
     newTag: master
