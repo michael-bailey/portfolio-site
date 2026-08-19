@@ -5,7 +5,7 @@ import io.ktor.server.application.*
 import io.ktor.server.metrics.micrometer.*
 import io.ktor.server.plugins.callid.*
 import io.ktor.server.routing.*
-import net.michael_bailey.home.HomeController.Companion.setupHome
+import net.michael_bailey.home.controller.HomeController.Companion.setupHome
 import net.michael_bailey.observability.setupHealthController
 import org.koin.core.annotation.KoinApplication
 import org.koin.ktor.plugin.Koin
