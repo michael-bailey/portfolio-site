@@ -22,7 +22,7 @@ open class CustomMain(
 			initialAttributes = emptyMap,
 			consumer = consumer
 		).visit {
-			h1 { + header}
+			h2 { + header}
 			block()
 		}
 	}

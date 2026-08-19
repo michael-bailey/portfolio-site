@@ -4,6 +4,7 @@ import io.ktor.http.*
 import kotlinx.css.*
 import kotlinx.html.*
 import net.michael_bailey.kotlinx.css.MissingCssProperty
+import net.michael_bailey.kotlinx.css.textIndent
 import net.michael_bailey.kotlinx.html.Main
 import net.michael_bailey.kotlinx.main
 
@@ -28,6 +29,7 @@ inline fun HTML.mainLayout(crossinline block: Main.() -> Unit) {
 inline fun HTML.mainHead() {
 	head {
 		link(href = "index.css", rel = LinkHeader.Rel.Stylesheet)
+		meta(name = "viewport", content="width=device-width, initial-scale=1.0") {  }
 	}
 }
 
@@ -64,13 +66,17 @@ fun CssBuilder.applyMainLayout() {
 	}
 
 	header {
-		padding = Padding(LINEAR_ZERO, LinearDimension("2rem"))
+		padding = Padding(LINEAR_ZERO, LinearDimension("1.5rem"))
 		gridArea = HEADER_AREA
 		alignContent = Align.center
 	}
 
 	main {
 		gridArea = CONTENT_AREA
+	}
+
+	h3 {
+		marginBottom = LinearDimension("0.3rem")
 	}
 
 	section {
@@ -99,20 +105,10 @@ fun CssBuilder.applyMainLayout() {
 		child("article") {
 			child("p") {
 
+				margin = Margin(LinearDimension("1ch"), LinearDimension("0"));
+				textIndent = LinearDimension("2ch");
 			}
 		}
-	}
-
-	a {
-//		this.
-
-	}
-
-
-	article {}
-
-	a {
-
 	}
 
 	footer {

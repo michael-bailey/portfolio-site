@@ -7,13 +7,13 @@ class CustomSection(
 	override val consumer: TagConsumer<*>
 ): HTMLTag("section", consumer, initialAttributes, null, false, false), Section {
 
-	fun h1(block: H1.() -> Unit) {
-		H1(emptyMap, consumer).visit(block)
+	fun h2(block: H2.() -> Unit) {
+		H2(emptyMap, consumer).visit(block)
 	}
 
 	override fun paragraphArticle(header: String, block: Article.() -> Unit) {
 		CustomArticle(emptyMap, consumer).visit {
-			h2 {
+			h3 {
 				+header
 			}
 			block()
