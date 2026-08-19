@@ -48,9 +48,9 @@ fun CssBuilder.applyMainLayout() {
 
 	body {
 		display = Display.grid
-
-		width = SCREEN_WIDTH
+		width = min(SCREEN_WIDTH, LinearDimension("900px"))
 		minHeight = SCREEN_HEIGHT
+		margin = Margin(LinearDimension.auto)
 
 		gridTemplateRows = GridTemplateRows(
 			LinearDimension("5rem"),
