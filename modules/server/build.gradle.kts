@@ -24,6 +24,11 @@ dependencies {
 	implementation("io.insert-koin:koin-annotations:2.3.1")
 	implementation("io.ktor:ktor-server-html-builder:3.5.1")
 	implementation("org.jetbrains.kotlin-wrappers:kotlin-css:1.0.0-pre.625")
+
+	testImplementation("org.jetbrains.kotlin:kotlin-test:2.3.21")
+	testImplementation("org.junit.jupiter:junit-jupiter:5.14.0")
+	testImplementation("io.mockk:mockk-jvm:1.14.11")
+
 	ksp("io.insert-koin:koin-ksp-compiler:2.3.1")
 }
 
@@ -37,6 +42,10 @@ kotlin {
 
 application {
 	mainClass = "net.michael_bailey.MainKt"
+}
+
+tasks.withType<Test> {
+	useJUnitPlatform()
 }
 
 ktor {
