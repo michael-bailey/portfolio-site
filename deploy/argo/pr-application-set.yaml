@@ -1,0 +1,71 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: michael-bailey-net-prod
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  goTemplate: true
+  goTemplateOptions: [ "missingkey=error" ]
+
+  generators:
+    - pullRequest:
+        requeueAfterSeconds: 1800
+        github:
+          owner: michael-bailey
+          repo: portfolio-site
+          labels:
+            - deployed
+  template:
+    metadata:
+      name: michael-bailey-net-pr-{{.number}}
+      namespace: argocd
+      finalizers:
+        - resources-finalizer.argocd.argoproj.io
+    spec:
+      project: default
+
+      source:
+        repoURL: https://github.com/michael-bailey/portfolio-site
+        targetRevision: {{.head_sha}}
+        path: deploy/kustomise/overlays/preview
+        kustomize:
+          patches:
+            - target:
+                kind: Certificate
+                name: portfolio-site-tls
+              patch: |-
+                - op: replace
+                  path: /spec/dnsNames
+                  value:
+                    - pr-{{.number}}.michael-bailey.net
+            - target:
+                kind: IngressRoute
+                name: portfolio-site
+              patch: |-
+                - op: replace
+                  path: /spec/routes
+                  value:
+                    - match: Host(`pr-{{.number}}.michael-bailey.net`)
+                      kind: Rule
+                      services:
+                        - name: portfolio-site
+                          port: 80
+
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: portfolio-site-pr-{{.number}}
+
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
+        retry:
+          limit: 5
+          backoff:
+            duration: 5s
+            factor: 2
+            maxDuration: 3m
