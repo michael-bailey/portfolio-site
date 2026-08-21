@@ -52,6 +52,22 @@ spec:
                       services:
                         - name: portfolio-site
                           port: 80
+            - target:
+                kind: Deployment
+                name: portfolio-site
+              patch: |-
+                - op: replace
+                  path: /spec/template/spec/containers
+                  value:
+                    - name: portfolio-site
+                      image: ghcr.io/michael-bailey/personal_website:pr-{{.number}}
+                      imagePullPolicy: Always
+                      ports:
+                        - containerPort: 8080
+                      readinessProbe:
+                        httpGet:
+                          path: /
+                          port: 8080
 
       destination:
         server: https://kubernetes.default.svc
