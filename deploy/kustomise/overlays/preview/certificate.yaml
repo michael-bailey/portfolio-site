@@ -5,7 +5,7 @@ metadata:
 spec:
   secretName: portfolio-site-tls
   dnsNames:
-    - michael-bailey.net
+    - unset-preview-host.invalid
   issuerRef:
     name: letsencrypt-prod
     kind: ClusterIssuer

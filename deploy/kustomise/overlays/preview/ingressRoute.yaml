@@ -6,7 +6,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`michael-bailey.net`)
+    - match: Host(`unset-preview-host.invalid`)
       kind: Rule
       services:
         - name: portfolio-site
