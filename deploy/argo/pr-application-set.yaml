@@ -16,7 +16,7 @@ spec:
           owner: michael-bailey
           repo: portfolio-site
           labels:
-            - deployed
+            - Deployed
   template:
     metadata:
       name: michael-bailey-net-pr-{{.number}}
@@ -28,7 +28,7 @@ spec:
 
       source:
         repoURL: https://github.com/michael-bailey/portfolio-site
-        targetRevision: {{.head_sha}}
+        targetRevision: '{{.head_sha}}'
         path: deploy/kustomise/overlays/preview
         kustomize:
           patches:
