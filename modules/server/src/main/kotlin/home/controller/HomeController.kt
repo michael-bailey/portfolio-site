@@ -4,6 +4,7 @@ import io.ktor.server.html.*
 import io.ktor.server.routing.*
 import kotlinx.html.p
 import net.michael_bailey.extensions.respondCss
+import net.michael_bailey.home.model.ContentSection
 import net.michael_bailey.home.service.HomeContentService
 import net.michael_bailey.kotlinx.html.layout.applyMainLayout
 import net.michael_bailey.kotlinx.html.layout.mainHead
@@ -18,7 +19,8 @@ class HomeController(
 
 	suspend fun index(call: RoutingCall) {
 
-		val sections = homeContentService.getHomeContentSections()
+//		val sections = homeContentService.getHomeContentSections()
+		val sections = emptyList<ContentSection>()
 
 		call.respondHtml {
 			mainHead()
