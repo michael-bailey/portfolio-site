@@ -9,7 +9,7 @@ spec:
   project: default
 
   source:
-    repoURL: https://github.com/michael-bailey/personal_website
+    repoURL: https://github.com/michael-bailey/portfolio-site
     targetRevision: prod
     path: deploy/kustomise/overlays/prod
 
