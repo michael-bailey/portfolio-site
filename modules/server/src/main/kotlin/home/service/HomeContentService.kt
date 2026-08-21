@@ -13,7 +13,6 @@ class HomeContentService(
 	private val hobbyContent: HobbyContentRepository,
 	private val technologiesContent: TechnologiesContentRepository,
 ) {
-
 	fun getHomeContentSections() = aboutContent.getContentSections() +
 		projectContent.getContentSections() +
 		technologiesContent.getContentSections() +
