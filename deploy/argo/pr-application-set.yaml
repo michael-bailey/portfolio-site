@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: michael-bailey-net-prod
+  name: michael-bailey-net-previews-set
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
