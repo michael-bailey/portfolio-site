@@ -1,0 +1,11 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: portfolio-site-tls
+spec:
+  secretName: portfolio-site-tls
+  dnsNames:
+    - unset-preview-host.invalid
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
