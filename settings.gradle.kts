@@ -18,7 +18,6 @@ dependencyResolutionManagement {
 includeBuild("modules/plugins")
 
 include("backend")
-include("frontend")
 
 include(":modules:shared")
 include(":modules:server")
