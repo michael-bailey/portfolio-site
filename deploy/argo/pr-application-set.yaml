@@ -11,12 +11,14 @@ spec:
 
   generators:
     - pullRequest:
-        requeueAfterSeconds: 1800
         github:
           owner: michael-bailey
           repo: portfolio-site
-          labels:
-            - Deployed
+          tokenRef:
+            secretName: github-pr-token
+            key: token
+        requeueAfterSeconds: 3600
+
   template:
     metadata:
       name: michael-bailey-net-pr-{{.number}}
@@ -60,7 +62,7 @@ spec:
                   path: /spec/template/spec/containers
                   value:
                     - name: portfolio-site
-                      image: ghcr.io/michael-bailey/personal_website:pr-{{.number}}
+                      image: ghcr.io/michael-bailey/personal_website:{{.head_sha}}
                       imagePullPolicy: Always
                       ports:
                         - containerPort: 8080
