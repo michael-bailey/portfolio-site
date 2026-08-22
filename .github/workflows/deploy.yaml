@@ -40,7 +40,7 @@ jobs:
         # Btw if this works, this is dumb
         working-directory: deploy/kustomise/overlays/prod
         run: |
-          kustomize edit set image ${{ env.IMAGE_NAME }}=${{ env.IMAGE_NAME }}:sha-${{ github.event.workflow_run.head_sha }}
+          kustomize edit set image ${{ env.IMAGE_NAME }}=${{ env.IMAGE_NAME }}:${{ github.event.workflow_run.head_sha }}
 
       - name: Commit new tag to prod
         run: |
