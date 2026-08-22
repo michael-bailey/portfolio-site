@@ -68,7 +68,7 @@ jobs:
           images: ${{ env.IMAGE_NAME }}
           tags: |
             type=ref,event=pr
-            type=sha,format=long,enable=${{ github.event_name == 'push' }}
+            type=sha,format=long
             type=raw,value=latest,enable=${{ github.event_name == 'push' }}
 
       - uses: docker/build-push-action@v7
