@@ -68,7 +68,7 @@ jobs:
         with:
           images: ${{ env.IMAGE_NAME }}
           tags: |
-            type=sha,type=long
+            type=sha,format=long
             type=raw,value=latest
 
       - uses: docker/build-push-action@v7
