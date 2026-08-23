@@ -1,11 +1,12 @@
-name: CI
+name: PR CI
 
 on:
   pull_request:
     types: [ synchronize, opened, reopened ]
     branches: [ master ]
   push:
-    branches: [ master ]
+    branches:
+      - master
 
 permissions:
   contents: read
@@ -47,7 +48,7 @@ jobs:
 
   docker:
     name: Build & publish Docker image
-    needs: test
+    needs: [ test ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
@@ -67,8 +68,8 @@ jobs:
         with:
           images: ${{ env.IMAGE_NAME }}
           tags: |
-            type=ref,event=pr
-            type=raw,value=${{ github.event.pull_request.head.sha }}
+            type=sha,format=long
+            type=raw,value=latest
 
       - uses: docker/build-push-action@v7
         with:
