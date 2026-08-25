@@ -4,6 +4,10 @@ on:
   pull_request:
     types: [ opened, synchronize, reopened ]
 
+permissions:
+  contents: read
+  packages: write
+
 jobs:
   ci:
     if: contains(github.event.pull_request.labels.*.name, 'deployed') || github.event.action != 'labeled'
