@@ -1,12 +1,13 @@
 name: CI
 
 on:
-  pull_request:
-    types: [ synchronize, opened, reopened ]
-    branches: [ master ]
-  push:
-    branches:
-      - master
+  workflow_call:
+    inputs:
+      head_sha:
+        required: true
+        type: string
+        description: "the head sha of the branch"
+
 
 permissions:
   contents: read
@@ -52,6 +53,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
+        with:
+          ref: ${{ inputs.head_sha }}
 
       - uses: docker/setup-qemu-action@v3
 
@@ -68,7 +71,7 @@ jobs:
         with:
           images: ${{ env.IMAGE_NAME }}
           tags: |
-            type=sha,format=long
+            type=raw,value=sha-${{ inputs.head_sha }}
             type=raw,value=latest
 
       - uses: docker/build-push-action@v7
