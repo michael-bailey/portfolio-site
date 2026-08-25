@@ -14,6 +14,7 @@ spec:
         github:
           owner: michael-bailey
           repo: portfolio-site
+          labels: [ Deployed ]
           tokenRef:
             secretName: github-pr-token
             key: token
@@ -62,7 +63,7 @@ spec:
                   path: /spec/template/spec/containers
                   value:
                     - name: portfolio-site
-                      image: ghcr.io/michael-bailey/personal_website:{{.head_sha}}
+                      image: ghcr.io/michael-bailey/personal_website:sha-{{.head_sha}}
                       imagePullPolicy: Always
                       ports:
                         - containerPort: 8080

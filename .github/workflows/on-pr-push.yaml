@@ -1,0 +1,17 @@
+name: PR Push
+
+on:
+  pull_request:
+    types: [ opened, synchronize, reopened ]
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  ci:
+    if: contains(github.event.pull_request.labels.*.name, 'deployed') || github.event.action != 'labeled'
+    uses: ./.github/workflows/ci.yaml
+    with:
+      head_sha: ${{ github.event.pull_request.head.sha }}
+    secrets: inherit

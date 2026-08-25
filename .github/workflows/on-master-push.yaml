@@ -1,0 +1,16 @@
+name: Master Push
+
+on:
+  push:
+    branches: [ master ]
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  ci:
+    uses: ./.github/workflows/ci.yaml
+    with:
+      head_sha: ${{ github.sha }}
+    secrets: inherit
