@@ -17,8 +17,9 @@ class ProjectContentRepository {
 			the
 			creation of the projects""".trimIndent(),
 			articles = listOf(
+				getBramblePiArticle(),
 				getGymLogBookArticle(),
-				getBramblePiArticle()
+				getPersonalWebsiteArticle(),
 			)
 		),
 	)
@@ -58,6 +59,45 @@ class ProjectContentRepository {
 				provisioner, a kind of kubernetes, but only for deploying docker based
 				services, this runs on the control plane Pi, as it currently hosts a
 				Minecraft server for myself.""",
+		)
+	)
+
+	private fun getPersonalWebsiteArticle(): ContentArticle = ContentArticle(
+		header = "Portfolio site", paragraphs = listOf(
+			"""
+				My portfolio site is a place for my thoughts, side projects, and a sandbox
+				for testing new things. Whilst this is a testing ground, i have a few rules
+				that i try to follow.
+			""".trimIndent(), """
+				Firstly, this website will not be using javascript frameworks. This is due
+				to wanting as pure as possible kotlin backend and frontend. Some sections 
+				and projects might feature other languages, but they will be imported from
+				CDNs (most likely github) and loaded, using prewritten 'static' scripts
+				 as a kind of bootstrap. This allows the strucutre and majority content 
+				 to stay as structured, static HTML.
+			""".trimIndent(), """
+				Now the HTML is generated within the server using Kotlin, Ktor, and Ktor-html,
+				a library for generating HTMl as a DSL from Ktor. This means i can get the
+				best of reusable components, without using a specialised templating engine.
+			""".trimIndent(), """
+				Secondly, design is not my strong suit. Especially with using CSS to style HTML.
+				for this reason, I've imposed some guides for writing pages. HTML features semantic 
+				tags. Things like section, article, main, and nav. These all serve specific
+				purposes in a web page. So i've designed my pages to utilise these for content
+				structure. sections hold articles, articles contain paragraphs, and so on.
+			""".trimIndent(), """
+				With the page defined using these tags, defining styles fits around the 
+				semantic meaning of the tags, rather than arbitrary classes. for now, there
+				is only paragraph containing articles, but there could be a class of article
+				than has an image. this links a tag, with a "class" of said tag, preserving
+				semantic meaning.
+			""".trimIndent(), """
+				Finally, This site shall have its deployments be fully automated. This is
+				so i can properly learn how to make and host full kubernetes applications.
+				Whilst also being an example for other projects. It won't be perfect, but
+				it will be a good start to making my life easier.
+			""".trimIndent()
+
 		)
 	)
 }
