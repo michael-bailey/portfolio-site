@@ -2,7 +2,6 @@ package net.michael_bailey.home.controller
 
 import io.ktor.server.html.*
 import io.ktor.server.routing.*
-import kotlinx.html.p
 import net.michael_bailey.extensions.respondCss
 import net.michael_bailey.home.service.HomeContentService
 import net.michael_bailey.kotlinx.html.layout.applyMainLayout
@@ -24,12 +23,13 @@ class HomeController(
 			mainHead()
 			mainLayout {
 				sections.forEach { section ->
-					section(section.header) {
+					basicSection {
 						section.articles.forEach { article ->
-							paragraphArticle(article.header) {
-								article.paragraphs.forEach { para ->
-									p {
-										+para
+							paragraphArticle {
+								header = article.header
+								article.paragraphs.forEach { content ->
+									para {
+										+content
 									}
 								}
 							}
