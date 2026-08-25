@@ -50,21 +50,32 @@ class TechnologiesContentRepository {
 					header = "Rust",
 					paragraphs = listOf(
 						"""Rust is my current go to for projects that have well defined states.
-							This is because of a number of it's features. 
-							Firstly, as a system language, it doesnt try to hide the inner workings of operations.
-							Secondly its algebraic type system, i find to be the best for describing application state. 
+							This is because of a number of it's features that focus on provable correctness.
+						""".trimIndent(),
+						"""
+							As a systems language, it is fast. Rust compiles to machine code directly.
+							So when compiled with optimisations, it is faster than the JVM, python
+							or other virtual machine languages. This also means that a lot of memory 
+							management is also 'manual', but can be automatic when explicitly
+							chosen. So it doesnt try to hide the inner workings of operations.
+						""".trimIndent(),
+						"""
+							As rust has a focus on correctness it has an algebraic type system.
+							This allows application states to be defined in such a way where
+							invalid states can be entirely removed. For example in kotlin, you 
+							have sealed classes, which is a way of defining x i find to be the best for describing application state. 
 							allowing me to eliminate invalid states for my work, whilst forcing states from other frameworks 
 							to be reasoned into valid states for my use.
 							Finally, The compiler (in general) is able to pinpoint where an error is, and often provides fixes where possible. 
-							This along with tools like clippy, allows correct and clean code (not the OOP clean). 
-							""".trimIndent()
+							This along with tools like clippy, allows correct and clean code (not the OOP clean).
+						""".trimIndent()
 					)
 				),
 				ContentArticle(
 					header = "Elixir",
 					paragraphs = listOf(
 						"""I dont use this language as much as i would like. However, i did want to mention it
-							for some of the principals it follows.""",
+							for some of the principals Entities.it follows.""",
 						"""First, let it crash. most programming is done
 							defensively, try statements, if guard blocks, etc. Elixir discards this mentality.
 							The principal is, fail early, log the issue, reset the state to a fresh slate.
@@ -78,7 +89,7 @@ class TechnologiesContentRepository {
 							ability to not take down the entire program.
 							""".trimIndent(),
 						"""
-							Because of these principals, and the Elixir language itself, i think it's a good mention.
+							Entities.Because of these principals, and the Elixir language itself, i think it's a good mention.
 							As its philosophy, whilst not makking perfectly onto kotlin or rust, can be used to make 
 							decisions.
 						""".trimIndent()
