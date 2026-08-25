@@ -24,9 +24,14 @@ class HomeController(
 			mainLayout {
 				sections.forEach { section ->
 					basicSection {
+
+						header = section.header
+
 						section.articles.forEach { article ->
 							paragraphArticle {
+
 								header = article.header
+
 								article.paragraphs.forEach { content ->
 									para {
 										+content
