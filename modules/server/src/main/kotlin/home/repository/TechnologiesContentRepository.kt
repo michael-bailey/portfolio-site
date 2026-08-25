@@ -63,11 +63,25 @@ class TechnologiesContentRepository {
 				ContentArticle(
 					header = "Elixir",
 					paragraphs = listOf(
-						"""kotlin is my primary programming language.
-							This is due to its flexibility between working on backend, frontend, 
-							and native applications. Whilst i have experience using industry standard frameworks,
-							such as spring boot, i prefer to use Ktor and kotlin multiplatform.
-							""".trimIndent()
+						"""I dont use this language as much as i would like. However, i did want to mention it
+							for some of the principals it follows.""",
+						"""First, let it crash. most programming is done
+							defensively, try statements, if guard blocks, etc. Elixir discards this mentality.
+							The principal is, fail early, log the issue, reset the state to a fresh slate.
+							This allows errors to be flagged quicker, and program state to be saved.
+							this combined with the second principal allows errors to be discovered quicker.""",
+						"""
+							The second principal follows from the usage of "processes". these are green threads,
+							and Erlang / Elixir uses them everywhere. the second principal is supervise and recover.
+							a supervisor is a process that monitors child processes. When a child process dies, the
+							supervisor is notified and decides what to do next. This provides the 'let it crash' its
+							ability to not take down the entire program.
+							""".trimIndent(),
+						"""
+							Because of these principals, and the Elixir language itself, i think it's a good mention.
+							As its philosophy, whilst not makking perfectly onto kotlin or rust, can be used to make 
+							decisions.
+						""".trimIndent()
 					)
 				),
 			)
