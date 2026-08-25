@@ -2,12 +2,12 @@ name: PR Push
 
 on:
   pull_request:
-    types: [ opened, synchronize, reopened, labeled ]
+    types: [ opened, synchronize, reopened ]
 
 jobs:
   ci:
     if: contains(github.event.pull_request.labels.*.name, 'deployed') || github.event.action != 'labeled'
-    uses: ./.github/workflows/ci.yml
+    uses: ./.github/workflows/ci.yaml
     with:
       head_sha: ${{ github.event.pull_request.head.sha }}
     secrets: inherit
