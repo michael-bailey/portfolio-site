@@ -26,7 +26,9 @@ open class Main(
 	}
 
 	fun render() = visit {
-
+		components.forEach {
+			it()
+		}
 	}
 
 
