@@ -1,29 +1,32 @@
 package net.michael_bailey.components
 
-import kotlinx.html.*
+import kotlinx.html.FlowOrPhrasingContent
+import kotlinx.html.HtmlBlockTag
+import kotlinx.html.TagConsumer
+import kotlinx.html.a
 
 class Navigation(
 	consumer: TagConsumer<*>
-): HTMLTag(
+): HtmlComponent(
 	tagName = "nav",
 	consumer = consumer,
-	initialAttributes = emptyMap,
-	namespace = null,
-	inlineTag = false,
-	emptyTag = false
 ), NavigationContainer, HtmlBlockTag, FlowOrPhrasingContent {
 
 	private val components = mutableListOf<Navigation.() -> Unit>()
 
-	override fun addLink() {
-		TODO("Not yet implemented")
+	override fun addLink(href: String, text: String) {
+		components += {
+			a(href = href) {
+				+text
+			}
+		}
 	}
 
 	override fun addDropdown() {
 		TODO("Not yet implemented")
 	}
 
-	fun render() = visit {
+	override fun renderContents() {
 		components.forEach {
 			it()
 		}
