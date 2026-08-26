@@ -14,11 +14,19 @@ open class Main(
 	emptyTag = false
 ), SectionContainer, HtmlBlockTag, FlowOrPhrasingContent {
 
+	var components = mutableListOf<Main.() -> Unit>()
+
 	override fun basicSection(block: SectionContent.() -> Unit) {
-		Section(
-			initialAttributes = emptyMap,
-			consumer = consumer
-		).apply(block).render()
+		components += {
+			Section(
+				initialAttributes = emptyMap,
+				consumer = consumer
+			).apply(block).render()
+		}
+	}
+
+	fun render() = visit {
+
 	}
 
 
