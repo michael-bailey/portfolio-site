@@ -4,3 +4,4 @@ import kotlinx.css.LinearDimension
 import kotlinx.css.StyledElement
 
 var StyledElement.textIndent: LinearDimension by MissingCssProperty()
+var StyledElement.gridGap: LinearDimension by MissingCssProperty()
