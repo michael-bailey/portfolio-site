@@ -124,15 +124,17 @@ fun CssBuilder.applyMainLayout() {
 	}
 
 	section {
-		margin = Margin(LinearDimension("1rem"))
+		margin = Margin(0.5.rem, 1.rem)
 
 		child("*") {
 			firstChild {
+				marginTop = 1.rem
 				borderTopWidth = BORDER_WIDTH
 				borderRadius = LinearDimension("10px 10px 0 0")
 			}
 
 			lastChild {
+				marginBottom = 1.rem
 				borderTopWidth = BORDER_WIDTH
 				borderRadius = LinearDimension("0 0 10px 10px")
 			}
