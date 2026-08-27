@@ -5,10 +5,10 @@ import kotlinx.css.*
 import kotlinx.html.*
 import net.michael_bailey.kotlinx.css.MissingCssProperty
 import net.michael_bailey.kotlinx.css.textIndent
-import net.michael_bailey.kotlinx.html.Main
+import net.michael_bailey.kotlinx.html.SectionContainer
 import net.michael_bailey.kotlinx.main
 
-inline fun HTML.mainLayout(crossinline block: Main.() -> Unit) {
+inline fun HTML.mainLayout(crossinline block: SectionContainer.() -> Unit) {
 	body {
 		header {
 			h1 {
