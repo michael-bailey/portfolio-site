@@ -19,6 +19,7 @@ inline fun HTML.mainLayout(crossinline block: SectionContainer.() -> Unit) {
 		}
 		nav {
 			addLink("/", "Home")
+			addLink("https://github.com/michael-bailey", "Github")
 		}
 		main {
 			block()
@@ -124,26 +125,27 @@ fun CssBuilder.applyMainLayout() {
 	}
 
 	section {
-		margin = Margin(0.5.rem, 1.rem)
-
+		margin = Margin(vertical = 1.rem, 0.rem)
 		child("*") {
+			margin = Margin(vertical = 0.rem, 1.rem)
+			padding = Padding(LinearDimension("1rem"))
+
+			borderColor = Color.lightGray
+			borderStyle = BorderStyle.solid
+
+			borderWidth = LinearDimension("0 1px")
+			borderTopWidth = LinearDimension("1px")
+
 			firstChild {
-				marginTop = 1.rem
-				borderTopWidth = BORDER_WIDTH
-				borderRadius = LinearDimension("10px 10px 0 0")
+				borderTopRightRadius = 10.px
+				borderTopLeftRadius = 10.px
 			}
 
 			lastChild {
-				marginBottom = 1.rem
-				borderTopWidth = BORDER_WIDTH
-				borderRadius = LinearDimension("0 0 10px 10px")
+				borderBottomRightRadius = 10.px
+				borderBottomLeftRadius = 10.px
+				borderBottomWidth = 1.px
 			}
-
-			padding = Padding(LinearDimension("1rem"))
-			borderWidth = LinearDimension("0 1px")
-			borderColor = Color.lightGray
-			borderStyle = BorderStyle.solid
-			borderBottomWidth = LinearDimension("1px")
 		}
 	}
 
