@@ -1,9 +1,12 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - ../../base
-  - certificate.yaml
-  - ingressRoute.yaml
+- ../../base
+- certificate.yaml
+- ingressRoute.yaml
 images:
-  - name: michael-bailey-net
-    newTag: master
+- name: ghcr.io/michael-bailey/personal_website
+  newName: ghcr.io/michael-bailey/personal_website
+  newTag: sha-d39ee3e953ffd455e40e5a7959bb80664ad57d5e
+- name: michael-bailey-net
+  newTag: master
