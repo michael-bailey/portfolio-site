@@ -1,6 +1,6 @@
 package net.michael_bailey.home.model
 
-data class ContentArticle(
+data class ParagraphArticle(
 	val header: String,
-	val paragraphs: List<String>
+	val paragraphs: List<String>,
 )

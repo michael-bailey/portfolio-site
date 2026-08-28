@@ -1,7 +1,7 @@
 package net.michael_bailey.home.repository
 
-import net.michael_bailey.home.model.ContentArticle
 import net.michael_bailey.home.model.ContentSection
+import net.michael_bailey.home.model.ParagraphArticle
 import org.koin.core.annotation.Single
 
 @Single
@@ -11,7 +11,7 @@ class AboutContentRepository {
 			header = "About",
 			description = "",
 			articles = listOf(
-				ContentArticle(
+				ParagraphArticle(
 					header = "Hello world",
 					paragraphs = listOf(
 						"""Hi there, I'm Michael. I'm a software engineer with a
