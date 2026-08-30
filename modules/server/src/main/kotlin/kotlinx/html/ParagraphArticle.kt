@@ -17,7 +17,7 @@ class ParagraphArticle(
 		}
 	}
 
-	override fun customContent(block: (FlowOrPhrasingContent).() -> Unit) {
+	override fun customContent(block: HtmlBlockTag.() -> Unit) {
 		components += block
 	}
 
