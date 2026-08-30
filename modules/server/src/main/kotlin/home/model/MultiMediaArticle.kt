@@ -2,5 +2,5 @@ package net.michael_bailey.home.model
 
 data class MultiMediaArticle(
 	override val header: String,
-	val paragraphs: List<ArticleContent>,
+	val content: List<ArticleContent>,
 ) : Article
