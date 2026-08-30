@@ -1,6 +1,7 @@
 package net.michael_bailey.kotlinx.html
 
 import kotlinx.html.*
+import net.michael_bailey.components.Article
 import net.michael_bailey.components.HtmlComponent
 
 class Section(
@@ -18,6 +19,14 @@ class Section(
 		components += {
 			ParagraphArticle(
 				initialAttributes = emptyMap, consumer = consumer
+			).apply(block).render()
+		}
+	}
+
+	override fun multiMediaArticle(block: ArticleContent.() -> Unit) {
+		components += {
+			Article(
+				consumer = this.consumer
 			).apply(block).render()
 		}
 	}
