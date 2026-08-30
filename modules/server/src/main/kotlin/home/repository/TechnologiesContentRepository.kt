@@ -1,7 +1,7 @@
 package net.michael_bailey.home.repository
 
-import net.michael_bailey.home.model.ContentArticle
 import net.michael_bailey.home.model.ContentSection
+import net.michael_bailey.home.model.ParagraphArticle
 import org.koin.core.annotation.Single
 
 @Single
@@ -11,7 +11,7 @@ class TechnologiesContentRepository {
 			header = "Technologies",
 			description = "",
 			articles = listOf(
-				ContentArticle(
+				ParagraphArticle(
 					header = "Kotlin",
 					paragraphs = listOf(
 						"""kotlin is my primary programming language.
@@ -21,7 +21,7 @@ class TechnologiesContentRepository {
 							""".trimIndent()
 					)
 				),
-				ContentArticle(
+				ParagraphArticle(
 					header = "Ktor",
 					paragraphs = listOf(
 						"""
@@ -36,7 +36,7 @@ class TechnologiesContentRepository {
 						""".trimIndent()
 					)
 				),
-				ContentArticle(
+				ParagraphArticle(
 					header = "Kotlin Multi-Platform",
 					paragraphs = listOf(
 						"""Kotlin multiplatform is the base for end-to-end kotlin applications.
@@ -46,7 +46,7 @@ class TechnologiesContentRepository {
 						""".trimIndent()
 					)
 				),
-				ContentArticle(
+				ParagraphArticle(
 					header = "Rust",
 					paragraphs = listOf(
 						"""Rust is my current go to for projects that have well defined states.
@@ -71,7 +71,7 @@ class TechnologiesContentRepository {
 						""".trimIndent()
 					)
 				),
-				ContentArticle(
+				ParagraphArticle(
 					header = "Elixir",
 					paragraphs = listOf(
 						"""I dont use this language as much as i would like. However, i did want to mention it

@@ -1,7 +1,7 @@
 package net.michael_bailey.home.repository
 
-import net.michael_bailey.home.model.ContentArticle
 import net.michael_bailey.home.model.ContentSection
+import net.michael_bailey.home.model.ParagraphArticle
 import org.koin.core.annotation.Single
 
 @Single
@@ -24,7 +24,7 @@ class ProjectContentRepository {
 		),
 	)
 
-	private fun getGymLogBookArticle() = ContentArticle(
+	private fun getGymLogBookArticle() = ParagraphArticle(
 		header = "Gym Log Book", paragraphs = listOf(
 			"""Gym Log Book is a full native Android app I built to help log my
 				strength training progress. It features structured navigation,
@@ -42,7 +42,7 @@ class ProjectContentRepository {
 		)
 	)
 
-	private fun getBramblePiArticle() = ContentArticle(
+	private fun getBramblePiArticle() = ParagraphArticle(
 		header = "Bramble Pi", paragraphs = listOf(
 			"""This is my personal kubernetes cluster. It is a setup of 5 Raspberry Pi
 				5's, using K3s to create a 'simple' kubernetes cluster. This has been a
@@ -62,7 +62,7 @@ class ProjectContentRepository {
 		)
 	)
 
-	private fun getPersonalWebsiteArticle(): ContentArticle = ContentArticle(
+	private fun getPersonalWebsiteArticle(): ParagraphArticle = ParagraphArticle(
 		header = "Portfolio site", paragraphs = listOf(
 			"""
 				My portfolio site is a place for my thoughts, side projects, and a sandbox
