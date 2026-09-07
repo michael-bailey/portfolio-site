@@ -1,20 +1,26 @@
 package net.michael_bailey.application
 
-import io.micrometer.core.instrument.MeterRegistry
-import io.micrometer.prometheusmetrics.PrometheusConfig
-import io.micrometer.prometheusmetrics.PrometheusMeterRegistry
+import io.ktor.http.*
+import io.ktor.server.application.*
+import io.ktor.server.plugins.callid.*
 import org.koin.core.annotation.ComponentScan
 import org.koin.core.annotation.Configuration
 import org.koin.core.annotation.Module
-import org.koin.core.annotation.Single
+import kotlin.uuid.Uuid
 
 @Module
 @Configuration
 @ComponentScan("net.michael_bailey.application")
-class AppModule {
-
-	@Single(binds = [MeterRegistry::class])
-	fun micrometerMetrics(): PrometheusMeterRegistry =
-		PrometheusMeterRegistry(PrometheusConfig.DEFAULT)
-
+object AppModule {
+	fun Application.setupCallId() {
+		install(CallId) {
+			header(HttpHeaders.XRequestId)
+			verify { callId: String ->
+				callId.isNotEmpty()
+			}
+			this.generate {
+				Uuid.generateV7().toString()
+			}
+		}
+	}
 }

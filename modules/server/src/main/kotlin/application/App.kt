@@ -6,8 +6,9 @@ import net.michael_bailey.application.plugins.setupCallId
 import net.michael_bailey.application.plugins.setupMetrics
 import net.michael_bailey.authentication.AuthenticationModule.setupAuthentication
 import net.michael_bailey.authentication.controller.AuthenticationDebugController.Companion.setupAuthenticationController
+import net.michael_bailey.application.AppModule.setupCallId
 import net.michael_bailey.home.controller.HomeController.Companion.setupHome
-import net.michael_bailey.observability.setupHealthController
+import net.michael_bailey.observability.ObservabilityModule.setupObservability
 import org.koin.core.annotation.KoinApplication
 import org.koin.ktor.plugin.Koin
 import org.koin.logger.slf4jLogger
@@ -25,11 +26,11 @@ object App {
 		}
 
 		setupCallId()
+		setupObservability()
 		setupAuthentication()
-		setupMetrics()
+
 
 		routing {
-			setupHealthController()
 			setupHome()
 			setupAuthenticationController()
 		}
