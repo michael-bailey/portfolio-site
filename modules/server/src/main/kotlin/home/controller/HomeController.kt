@@ -97,13 +97,17 @@ class HomeController(
 	}
 
 	private fun createRemoteHostCounter(call: RoutingCall): Counter {
-		val tags = Tags.of("host", call.request.local.remoteHost)
+		val tags = Tags.of(HOST_TAG_NAME, call.request.local.remoteHost)
 		val requestCounter = meterRegistry
-			.counter("home.request.counter", tags)
+			.counter(HOME_REQUEST_KEY, tags)
 		return requestCounter
 	}
 
 	companion object {
+
+		private const val HOME_REQUEST_KEY = "home.request.counter"
+		private const val HOST_TAG_NAME = "host"
+
 		fun Routing.setupHome() {
 			this.route("/") {
 				val controller: HomeController by inject()
