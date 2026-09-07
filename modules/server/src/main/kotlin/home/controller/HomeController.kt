@@ -2,6 +2,9 @@ package net.michael_bailey.home.controller
 
 import io.ktor.server.html.*
 import io.ktor.server.routing.*
+import io.micrometer.core.instrument.Counter
+import io.micrometer.core.instrument.MeterRegistry
+import io.micrometer.core.instrument.Tags
 import kotlinx.html.p
 import net.michael_bailey.extensions.respondCss
 import net.michael_bailey.home.model.Article
@@ -20,9 +23,13 @@ import net.michael_bailey.kotlinx.html.ArticleContent as ArticleContentHtml
 @Factory
 class HomeController(
 	private val homeContentService: HomeContentService,
+	private val meterRegistry: MeterRegistry
 ) {
 
 	suspend fun index(call: RoutingCall) {
+
+		val requestCounter = createRemoteHostCounter(call)
+		requestCounter.increment()
 
 		val sections = homeContentService.getHomeContentSections()
 
@@ -87,6 +94,13 @@ class HomeController(
 				+content.text
 			}
 		}
+	}
+
+	private fun createRemoteHostCounter(call: RoutingCall): Counter {
+		val tags = Tags.of("host", call.request.local.remoteHost)
+		val requestCounter = meterRegistry
+			.counter("home.request.counter", tags)
+		return requestCounter
 	}
 
 	companion object {
