@@ -1,5 +1,6 @@
 package net.michael_bailey.home.service
 
+import io.micrometer.core.instrument.MeterRegistry
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
@@ -18,6 +19,7 @@ class HomeContentServiceTest {
 	private lateinit var projectContent: ProjectContentRepository
 	private lateinit var hobbyContent: HobbyContentRepository
 	private lateinit var technologiesContent: TechnologiesContentRepository
+	private lateinit var meterRegistry: MeterRegistry
 	private lateinit var service: HomeContentService
 
 	@BeforeEach
@@ -26,12 +28,15 @@ class HomeContentServiceTest {
 		projectContent = mockk()
 		hobbyContent = mockk()
 		technologiesContent = mockk()
+		meterRegistry = mockk()
+
 
 		service = HomeContentService(
 			aboutContent = aboutContent,
 			projectContent = projectContent,
 			hobbyContent = hobbyContent,
 			technologiesContent = technologiesContent,
+			meterRegistry = meterRegistry,
 		)
 	}
 

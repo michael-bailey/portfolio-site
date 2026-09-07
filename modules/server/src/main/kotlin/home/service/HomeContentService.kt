@@ -14,12 +14,12 @@ class HomeContentService(
 	private val projectContent: ProjectContentRepository,
 	private val hobbyContent: HobbyContentRepository,
 	private val technologiesContent: TechnologiesContentRepository,
-	private val meters: MeterRegistry
+	private val meterRegistry: MeterRegistry
 ) {
 
 	fun getHomeContentSections(): List<ContentSection> {
 
-		meters.counter(SECTION_COUNTER_NAME).increment()
+		meterRegistry.counter(SECTION_COUNTER_NAME).increment()
 
 		return aboutContent.getContentSections() +
 			projectContent.getContentSections() +
