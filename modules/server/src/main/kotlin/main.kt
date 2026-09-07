@@ -5,7 +5,7 @@ import io.ktor.server.netty.*
 import net.michael_bailey.application.App.setup
 
 fun main() {
-	embeddedServer(Netty, port = 8000) {
+	embeddedServer(Netty, port = 8080) {
 		this.setup()
 	}.start(true)
 }
