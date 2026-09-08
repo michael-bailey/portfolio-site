@@ -41,6 +41,8 @@ object AuthenticationModule {
 			}
 
 			validate {
+				println("---| headers |---")
+				this.request.headers.forEach { string, strings -> println("$string: $strings") }
 				it
 			}
 		}
