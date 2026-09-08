@@ -3,6 +3,7 @@ plugins {
 	id("io.ktor.plugin") version "3.5.1"
 	id("com.google.devtools.ksp") version "2.3.2"
 	id("io.insert-koin.compiler.plugin") version "1.1.0"
+	kotlin("plugin.serialization") version "2.4.0"
 }
 
 version = property("projectVersion") as String
@@ -12,6 +13,8 @@ dependencies {
 	implementation("io.ktor:ktor-server-openapi:3.5.1")
 	implementation("io.ktor:ktor-server-routing-openapi:3.5.1")
 	implementation("io.ktor:ktor-server-auth:3.5.1")
+	implementation("io.ktor:ktor-server-auth-jwt")
+	implementation("io.ktor:ktor-server-sessions:3.5.1")
 	implementation("io.ktor:ktor-server-content-negotiation:3.5.1")
 	implementation("io.ktor:ktor-server-call-logging:3.5.1")
 	implementation("io.ktor:ktor-server-call-id:3.5.1")
