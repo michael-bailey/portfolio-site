@@ -31,7 +31,7 @@ class ProjectContentRepository {
 				local data persistence, with plans to display graphs and support
 				more exercise types.""",
 			"""When I started at the gym, I wanted a way of logging my progress.
-				Whist I found lots of apps that could help with this, I found most
+				Whilst I found lots of apps that could help with this, I found most
 				of them to have complex functionality or had lacking UX.
 				So I decided to create my own app.""",
 			"""After starting with some Apple shortcuts, I got the basic idea of what
@@ -51,13 +51,12 @@ class ProjectContentRepository {
 				scalable software.""",
 			"""The core use cases for this is hosting my own projects, with
 				cross-platform ones taking priority. In fact, this very website is
-				hosted on it at this moment! the gym log book back and front end is
-				hosted on here as well, as its current evolution requires a central
-				server, although it is not set up to be the most scalable service in the
-				world.""",
-			"""There are other project being hosted on this. one is a kind of service
-				provisioner, a kind of kubernetes, but only for deploying docker based
-				services, this runs on the control plane Pi, as it currently hosts a
+				hosted on it at this moment! the gym log book backend and frontend are hosted 
+				on here as well, as its current evolution requires a central server, although
+				it is not set up to be the most scalable service in the world.""",
+			"""There are other project being hosted on this. One is a kind of service
+				provisioner, It sets up environments for deploying docker based
+				services. This runs on the control plane Pi, as it currently hosts a
 				Minecraft server for myself.""",
 		)
 	)
@@ -70,11 +69,9 @@ class ProjectContentRepository {
 				that i try to follow.
 			""".trimIndent(), """
 				Firstly, this website will not be using javascript frameworks. This is due
-				to wanting as pure as possible kotlin backend and frontend. Some sections 
-				and projects might feature other languages, but they will be imported from
-				CDNs (most likely github) and loaded, using prewritten 'static' scripts
-				 as a kind of bootstrap. This allows the strucutre and majority content 
-				 to stay as structured, static HTML.
+				to wanting a pure Kotlin codebase. Some sections might feature Wasm loaded
+				with javascript, allowing other projects to be hosted within a page. But
+				overall, static pages will be generated, following standardised html fragments.
 			""".trimIndent(), """
 				Now the HTML is generated within the server using Kotlin, Ktor, and Ktor-html,
 				a library for generating HTMl as a DSL from Ktor. This means i can get the
@@ -83,7 +80,7 @@ class ProjectContentRepository {
 				Secondly, design is not my strong suit. Especially with using CSS to style HTML.
 				for this reason, I've imposed some guides for writing pages. HTML features semantic 
 				tags. Things like section, article, main, and nav. These all serve specific
-				purposes in a web page. So i've designed my pages to utilise these for content
+				purposes in a web page. So I've designed my pages to utilise these for content
 				structure. sections hold articles, articles contain paragraphs, and so on.
 			""".trimIndent(), """
 				With the page defined using these tags, defining styles fits around the 
@@ -97,7 +94,6 @@ class ProjectContentRepository {
 				Whilst also being an example for other projects. It won't be perfect, but
 				it will be a good start to making my life easier.
 			""".trimIndent()
-
 		)
 	)
 }
