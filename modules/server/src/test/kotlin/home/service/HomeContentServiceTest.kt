@@ -1,5 +1,7 @@
 package net.michael_bailey.home.service
 
+import io.micrometer.core.instrument.Counter
+import io.micrometer.core.instrument.MeterRegistry
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
@@ -18,6 +20,8 @@ class HomeContentServiceTest {
 	private lateinit var projectContent: ProjectContentRepository
 	private lateinit var hobbyContent: HobbyContentRepository
 	private lateinit var technologiesContent: TechnologiesContentRepository
+	private lateinit var meterRegistry: MeterRegistry
+	private lateinit var counter: Counter
 	private lateinit var service: HomeContentService
 
 	@BeforeEach
@@ -26,12 +30,16 @@ class HomeContentServiceTest {
 		projectContent = mockk()
 		hobbyContent = mockk()
 		technologiesContent = mockk()
+		counter = mockk()
+		meterRegistry = mockk()
+
 
 		service = HomeContentService(
 			aboutContent = aboutContent,
 			projectContent = projectContent,
 			hobbyContent = hobbyContent,
 			technologiesContent = technologiesContent,
+			meterRegistry = meterRegistry,
 		)
 	}
 
@@ -67,6 +75,9 @@ class HomeContentServiceTest {
 		every { projectContent.getContentSections() } returns projectSections
 		every { technologiesContent.getContentSections() } returns technologiesSections
 		every { hobbyContent.getContentSections() } returns hobbySections
+		every { counter.increment() } returns Unit
+		every { meterRegistry.counter("home.content.service") } returns counter
+
 
 		val result = service.getHomeContentSections()
 
@@ -88,6 +99,8 @@ class HomeContentServiceTest {
 		every { projectContent.getContentSections() } returns emptyList()
 		every { technologiesContent.getContentSections() } returns emptyList()
 		every { hobbyContent.getContentSections() } returns emptyList()
+		every { counter.increment() } returns Unit
+		every { meterRegistry.counter("home.content.service") } returns counter
 
 		val result = service.getHomeContentSections()
 

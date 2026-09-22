@@ -29,6 +29,7 @@ dependencies {
 	implementation("org.jetbrains.kotlin-wrappers:kotlin-css:1.0.0-pre.625")
 
 	testImplementation("org.jetbrains.kotlin:kotlin-test:2.3.21")
+	testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.11.0")
 	testImplementation("org.junit.jupiter:junit-jupiter:5.14.0")
 	testImplementation("io.mockk:mockk-jvm:1.14.11")
 

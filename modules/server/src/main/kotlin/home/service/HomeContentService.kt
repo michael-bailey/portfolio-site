@@ -1,5 +1,7 @@
 package net.michael_bailey.home.service
 
+import io.micrometer.core.instrument.MeterRegistry
+import net.michael_bailey.home.model.ContentSection
 import net.michael_bailey.home.repository.AboutContentRepository
 import net.michael_bailey.home.repository.HobbyContentRepository
 import net.michael_bailey.home.repository.ProjectContentRepository
@@ -12,9 +14,20 @@ class HomeContentService(
 	private val projectContent: ProjectContentRepository,
 	private val hobbyContent: HobbyContentRepository,
 	private val technologiesContent: TechnologiesContentRepository,
+	private val meterRegistry: MeterRegistry
 ) {
-	fun getHomeContentSections() = aboutContent.getContentSections() +
-		projectContent.getContentSections() +
-		technologiesContent.getContentSections() +
-		hobbyContent.getContentSections()
+
+	fun getHomeContentSections(): List<ContentSection> {
+
+		meterRegistry.counter(SECTION_COUNTER_NAME).increment()
+
+		return aboutContent.getContentSections() +
+			projectContent.getContentSections() +
+			technologiesContent.getContentSections() +
+			hobbyContent.getContentSections()
+	}
+
+	companion object {
+		private const val SECTION_COUNTER_NAME = "home.content.service"
+	}
 }
