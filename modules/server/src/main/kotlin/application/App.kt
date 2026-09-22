@@ -5,6 +5,8 @@ import io.ktor.server.application.*
 import io.ktor.server.metrics.micrometer.*
 import io.ktor.server.plugins.callid.*
 import io.ktor.server.routing.*
+import net.michael_bailey.authentication.AuthenticationModule.setupAuthentication
+import net.michael_bailey.authentication.controller.AuthenticationDebugController.Companion.setupAuthenticationController
 import net.michael_bailey.home.controller.HomeController.Companion.setupHome
 import net.michael_bailey.observability.setupHealthController
 import org.koin.core.annotation.KoinApplication
@@ -38,9 +40,12 @@ object App {
 			}
 		}
 
+		setupAuthentication()
+
 		routing {
 			setupHealthController()
 			setupHome()
+			setupAuthenticationController()
 		}
 	}
 }
