@@ -95,7 +95,7 @@ class TechnologiesContentRepository {
 
 	private fun kotlinArticle(): ParagraphArticle = ParagraphArticle(
 		header = "Kotlin", paragraphs = listOf(
-			"""kotlin is my primary programming language.
+			"""Kotlin is my primary programming language.
 				This is due to its flexibility between working on backend, frontend, 
 				and native applications. Whilst i have experience using industry standard frameworks,
 				such as spring boot, i prefer to use Ktor and kotlin multiplatform.
